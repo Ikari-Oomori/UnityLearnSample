@@ -1,27 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CopyScript2 : SampleScript2
+public class SimpleCloneScript : SampleScript2
 {
-    public GameObject prefab; // Префаб для создания
-    public float spacing; // Расстояние между объектами по оси Z
-    public int amount; // Количество создаваемых объектов
+    public GameObject objectToClone; // Объект для клонирования
+    public float cloneSpacing; // Расстояние между клонами по оси Z
+    public int numberOfClones; // Количество создаваемых клонов
 
-
-
-
-    [ContextMenu("Старт")]
+    [ContextMenu("Создать Клоны")]
     public override void Use()
     {
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i < numberOfClones; i++)
         {
-            // Создание объекта
-            GameObject go = Instantiate(prefab);
-
-            go.transform.position = transform.position + new Vector3(0, 0, spacing * i);
+            GameObject clone = Instantiate(objectToClone, transform.position + new Vector3(0, 0, cloneSpacing * i), Quaternion.identity);
         }
     }
-
-
 }
